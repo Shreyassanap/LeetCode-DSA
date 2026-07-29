@@ -1,0 +1,24 @@
+void sortColors(int* nums, int numsSize) {
+
+    int i=0,j=numsSize-1,k=0;
+    while(k<=j)
+    {
+        if(nums[k]==0)
+        {
+          int temp=nums[k];
+          nums[k]=nums[i];
+          nums[i]=temp;
+            i++;
+            k++;
+        }
+        else if(nums[k]==2)
+        {
+            int temp=nums[k];
+            nums[k]=nums[j];
+            nums[j]=temp;
+            j--;
+        }
+        else
+            k++;
+    }
+}
