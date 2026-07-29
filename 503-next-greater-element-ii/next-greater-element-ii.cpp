@@ -1,7 +1,8 @@
 class Solution {
 public:
     vector<int> nextGreaterElements(vector<int>& nums) {
-        
+
+       
         vector<int> sol;
 
         for(int i=0;i<nums.size();i++)
