@@ -2,46 +2,25 @@ class Solution {
 public:
     string smallestPalindrome(string s) {
 
-        
-    unordered_map<char,int> mpp;
-    for(int i=0;i<s.length();i++)
-        mpp[s[i]]++;
-    
-    vector<char> ans1;
-    vector<char> mid;
-    vector<char> ans2;
+        unordered_map<char,int> mpp;
 
-    sort(s.begin(),s.end());
-    int i=0;
-    int count=0;
-    while(i!=s.length())
-    {
-        if(mpp[s[i]]%2==1 && count==0)
+        for(char c : s)
+            mpp[c]++;
+
+        string left = "";
+        string mid = "";
+
+        for(char c = 'a'; c <= 'z'; c++)
         {
-            count++;
-            mid.push_back(s[i++]);
+            left.append(mpp[c] / 2, c);
+
+            if(mpp[c] % 2 == 1)
+                mid += c;
         }
-        else
-        {
-            ans1.push_back(s[i++]);
-            if(i==s.length())
-                break;
-            ans2.push_back(s[i++]);
-        }
-    }
 
-    reverse(ans2.begin(),ans2.end());
+        string right = left;
+        reverse(right.begin(), right.end());
 
-    ans1.insert(ans1.end(),mid.begin(),mid.end());
-    ans1.insert(ans1.end(),ans2.begin(),ans2.end());
-
-    string es(ans1.begin(),ans1.end());
-    return es;
-    
-
-        
-
-        
-        
+        return left + mid + right;
     }
 };
