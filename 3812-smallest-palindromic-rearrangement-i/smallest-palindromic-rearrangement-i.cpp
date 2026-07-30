@@ -12,27 +12,21 @@ public:
     vector<char> ans2;
 
     sort(s.begin(),s.end());
-    int flag=0;
+    int i=0;
     int count=0;
-    for(int i=0;i<s.length();i++)
+    while(i!=s.length())
     {
-        if(mpp[s[i]]%2==1 && count==0){
-            mid.push_back(s[i]);
+        if(mpp[s[i]]%2==1 && count==0)
+        {
             count++;
+            mid.push_back(s[i++]);
         }
         else
         {
-            if(flag==0)
-            {
-                ans1.push_back(s[i]);
-                flag=1;
-            }
-            else
-            {
-                ans2.push_back(s[i]);
-                flag=0;
-            }
-
+            ans1.push_back(s[i++]);
+            if(i==s.length())
+                break;
+            ans2.push_back(s[i++]);
         }
     }
 
