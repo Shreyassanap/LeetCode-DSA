@@ -4,22 +4,32 @@ public:
 
         stack<char> stk;
 
-        for (char c : s) {
-            if (c == '*')
+        for(int i=0;i<s.size();i++)
+        {
+            if(s[i]=='*')
                 stk.pop();
+            
             else
-                stk.push(c);
+                stk.push(s[i]);
         }
-
-        string ans;
-
-        while (!stk.empty()) {
-            ans += stk.top();
+        string sol;
+        if(stk.empty())
+            return sol;
+        int i=0;
+        while(!stk.empty())
+        {
+            char a=stk.top();
+            sol.insert(sol.begin()+i,a);
+            i++;
             stk.pop();
         }
 
-        reverse(ans.begin(), ans.end());
+        reverse(sol.begin(),sol.end());
 
-        return ans;
+        return sol;
+
+
+        
+        
     }
 };
