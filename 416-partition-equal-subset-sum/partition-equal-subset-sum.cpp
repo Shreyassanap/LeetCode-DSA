@@ -30,9 +30,11 @@ public:
         if(target%2!=0)
             return false;
 
-        vector<vector<int>>dp(nums.size(),vector<int>(target+1,-1));
         
         target=target/2;
+
+        vector<vector<int>>dp(nums.size(),vector<int>(target+1,-1));
+        
 
                
 
