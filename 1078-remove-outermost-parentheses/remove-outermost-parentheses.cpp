@@ -4,18 +4,19 @@ public:
 
         int i=0;
         string sol;
-        stack<char>stk;
+        int count=0;
         while(i!=s.length())
         {
-            stk.push(s[i++]);
+            count++;
+            i++;
 
-            while(!stk.empty())
+            while(count)
             {
                 if(s[i]=='(')
-                    stk.push('(');
+                    count++;
                 else
-                    stk.pop();
-                if(!stk.empty())
+                    count--;
+                if(count)
                     sol=sol+s[i];
                 i++;
             }
