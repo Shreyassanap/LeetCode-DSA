@@ -12,10 +12,12 @@ public:
         {
             mpp1[s[i]]=t[i];
             mpp2[t[i]]=s[i];
+
+            if(mpp1.size()!=mpp2.size())
+                return false;
         }
 
-        if(mpp1.size()!=mpp2.size())
-            return false;
+        
         int i=0;
         while(i!=s.length())
         {
