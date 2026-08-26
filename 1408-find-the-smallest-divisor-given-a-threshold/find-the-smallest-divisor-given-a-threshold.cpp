@@ -2,10 +2,9 @@ class Solution {
 public:
     int smallestDivisor(vector<int>& nums, int threshold) {
 
-        sort(nums.begin(), nums.end());
+        int high = *max_element(nums.begin(), nums.end());
 
         int low = 1;
-        int high = nums[nums.size() - 1];
         int sol = INT_MAX;
 
         while (low <= high)
