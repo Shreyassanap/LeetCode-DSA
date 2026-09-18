@@ -12,7 +12,7 @@ public:
 
         n--;
 
-        int temp=2;
+        int temp=1;
         while(n>=0)
         {
             temp=digits[n]+1;
