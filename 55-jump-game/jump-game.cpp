@@ -1,23 +1,31 @@
 class Solution {
-public:
-    bool canJump(vector<int>& nums) {
 
-        if(nums.size()==1)
+    bool foo(vector<int>& nums, vector<int>& dp, int i)
+    {
+        if(i >= nums.size() - 1)
             return true;
-        int count=nums[0];
-        int i=0;
-        while(count!=0)
+
+        if(dp[i] != -1)
+            return dp[i];
+
+        for(int k = 1; k <= nums[i]; k++)
         {
-            count--;
-            i++;
-            if(i==nums.size()-1)
+            if(foo(nums, dp, i + k))
+            {
+                dp[i] = 1;
                 return true;
-            if(count<nums[i])
-                count=nums[i];
-            
+            }
         }
 
+        dp[i] = 0;
         return false;
-        
+    }
+
+public:
+    bool canJump(vector<int>& nums)
+    {
+        vector<int> dp(nums.size(), -1);
+
+        return foo(nums, dp, 0);
     }
 };
