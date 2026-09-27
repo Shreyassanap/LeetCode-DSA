@@ -12,7 +12,7 @@ public:
         mpp['D']=500;
         mpp['M']=1000;
 
-        reverse(s.begin(),s.end());\
+        reverse(s.begin(),s.end());
         
 
         int prev=0,sol=0;
