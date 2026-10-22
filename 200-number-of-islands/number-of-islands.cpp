@@ -1,30 +1,40 @@
 class Solution {
-    void bfs(vector<vector<char>>& grid, int n, int m)
+    void bfs(vector<vector<int>>& vis, vector<vector<char>>& grid, int n, int m)
     {
         queue<pair<int,int>> q;
         q.push({n, m});
-        grid[n][m] = '0';
-
-        int dr[] = {-1, 1, 0, 0};
-        int dc[] = {0, 0, -1, 1};
+        vis[n][m] = 1;
 
         while(!q.empty())
         {
-            auto [r, c] = q.front();
+            pair<int,int> temp = q.front();
             q.pop();
 
-            for(int k = 0; k < 4; k++)
-            {
-                int nr = r + dr[k];
-                int nc = c + dc[k];
+            n = temp.first;
+            m = temp.second;
 
-                if(nr >= 0 && nr < grid.size() &&
-                   nc >= 0 && nc < grid[0].size() &&
-                   grid[nr][nc] == '1')
-                {
-                    grid[nr][nc] = '0';
-                    q.push({nr, nc});
-                }
+            if(n + 1 < grid.size() && grid[n+1][m] == '1' && vis[n+1][m] == 0)
+            {
+                vis[n+1][m] = 1;
+                q.push({n+1, m});
+            }
+
+            if(m + 1 < grid[0].size() && grid[n][m+1] == '1' && vis[n][m+1] == 0)
+            {
+                vis[n][m+1] = 1;
+                q.push({n, m+1});
+            }
+
+            if(n - 1 >= 0 && grid[n-1][m] == '1' && vis[n-1][m] == 0)
+            {
+                vis[n-1][m] = 1;
+                q.push({n-1, m});
+            }
+
+            if(m - 1 >= 0 && grid[n][m-1] == '1' && vis[n][m-1] == 0)
+            {
+                vis[n][m-1] = 1;
+                q.push({n, m-1});
             }
         }
     }
@@ -34,16 +44,19 @@ public:
     {
         if(grid.empty()) return 0;
 
-        int n = grid.size(), m = grid[0].size();
+        int n = grid.size();
+        int m = grid[0].size();
+
+        vector<vector<int>> vis(n, vector<int>(m, 0));
         int count = 0;
 
         for(int i = 0; i < n; i++)
         {
             for(int j = 0; j < m; j++)
             {
-                if(grid[i][j] == '1')
+                if(grid[i][j] == '1' && vis[i][j] == 0)
                 {
-                    bfs(grid, i, j);
+                    bfs(vis, grid, i, j);
                     count++;
                 }
             }
