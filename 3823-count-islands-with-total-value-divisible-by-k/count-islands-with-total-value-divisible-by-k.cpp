@@ -76,7 +76,7 @@ public:
         {
             for(int j=0;j<m;j++)
             {
-                if(grid[i][j]>0 && vis[i][j]==0){
+                if(vis[i][j]==0 && grid[i][j]>0){
                     bfs(vis,grid,i,j,count,k);
                 }
             }
